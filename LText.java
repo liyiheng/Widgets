@@ -7,8 +7,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * 2个字与3个字对齐:"用户名"与"密码"对齐
- * _______试图封装文字对齐的TextView,未果;此TextView仅限一种场景
+ * 文字对齐的TextView
  * Created by liyiheng on 16/6/27.
  */
 public class LText extends TextView {
