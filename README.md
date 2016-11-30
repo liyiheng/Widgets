@@ -10,6 +10,6 @@ TextView文字对齐. eg,"用户名"和"密码"对齐
         editText.setTopicChar('*');
         
 
-![](./pics/device-2016-11-30-112729.gif)
+![](./pics/device_default.gif)
 
-![](./pics/device-2016-11-30-112902.gif)
+![](./pics/device_customize.gif)
