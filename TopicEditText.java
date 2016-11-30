@@ -62,7 +62,6 @@ public class TopicEditText extends EditText {
     }
 
 
-
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         ArrayList<Integer> indexes = new ArrayList<>();
@@ -82,8 +81,8 @@ public class TopicEditText extends EditText {
         //if (s.length() == 0 || s.charAt(s.length() - 1) != '#') return;
         SpannableString ss = new SpannableString(s);
         ss.setSpan(new ForegroundColorSpan(getTextColors().getDefaultColor()), 0, s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        size /= 2;
-        for (int i = 0; i < size; i++) {
+        int halfSize = size / 2;
+        for (int i = 0; i < halfSize; i++) {
             Integer spanStart = lastIndexes.get(i * 2);
             int spanEnd = lastIndexes.get(i * 2 + 1) + 1;
             ss.setSpan(new ForegroundColorSpan(colorTopic), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -91,34 +90,29 @@ public class TopicEditText extends EditText {
         int selectionEnd = getSelectionEnd();
         setText(ss);
         setSelection(selectionEnd);
-//        if (s.length() > start) {
-//            if (s.charAt(start) == '#') {
-//               // Dialog?
-//            }
-//        }
+        if (onTopicStartListener != null) {
+            int length = s.length();
+            if (length != 0) {
+                if (size % 2 == 1 && s.charAt(length - 1) == topicChar) {
+                    onTopicStartListener.topicStart();
+                }
+            }
+
+        }
     }
 
+    public void appendTopic(CharSequence cs) {
+        getText().append(cs).append(topicChar);
+    }
 
-//    @Override
-//    public void afterTextChanged(Editable s) {
-//        Log.e("_________", "afterTextChanged");
-//        if (ignore) return;
-//        if (!changed) return;
-//        //if (s.length() == 0 || s.charAt(s.length() - 1) != '#') return;
-//        ignore = true;
-//        int size = lastIndexes.size();
-//        SpannableString ss = new SpannableString(s);
-//        ss.setSpan(new ForegroundColorSpan(colorNormal), 0, s.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        size /= 2;
-//        for (int i = 0; i < size; i++) {
-//            Integer spanStart = lastIndexes.get(i * 2);
-//            int spanEnd = lastIndexes.get(i * 2 + 1) + 1;
-//            ss.setSpan(new ForegroundColorSpan(colorTopic), spanStart, spanEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        }
-//        int selectionEnd = getSelectionEnd();
-//        setText(ss);
-//        setSelection(selectionEnd);
-//        ignore = false;
-//    }
+    private OnTopicStartListener onTopicStartListener;
+
+    public void setOnTopicStartListener(OnTopicStartListener onTopicStartListener) {
+        this.onTopicStartListener = onTopicStartListener;
+    }
+
+    public interface OnTopicStartListener {
+        void topicStart();
+    }
 
 }
