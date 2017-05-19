@@ -1,6 +1,6 @@
 # Little tricks
-- [LTextView](#LTextView)
-- [TopicEditText](#TopicEditText)
+- [LTextView](#ltextview)
+- [TopicEditText](#topicedittext)
 - CircleProgress
 
 ## LTextView
