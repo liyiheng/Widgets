@@ -1,7 +1,7 @@
 # Little tricks
 - [LTextView](#ltextview)
 - [TopicEditText](#topicedittext)
-- CircleProgress
+- [CircleProgress](https://github.com/XanthusL/Widgets/blob/master/CircleProgress.java)
 
 ## LTextView
 TextView文字对齐(均匀分布). eg,"用户名"和"密码"对齐
